@@ -1,8 +1,15 @@
 /* Header Top Bar */
 .header-top {
-  background-color: #d32f2f;
+  background-color: $main-color;
   padding: 8px 0;
   font-size: 14px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+
+  .grid-x {
+    justify-content: flex-end;
+  }
 }
 
 .header-top-menu {
@@ -17,6 +24,7 @@
       color: $white;
       text-decoration: none;
       font-size: 14px;
+      font-family: $font;
 
       &:hover {
         text-decoration: underline;
@@ -24,21 +32,23 @@
     }
   }
 }
-.grid-x {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-}
 
 /* Main Header */
 .header {
   background-color: $white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  .grid-x {
+    align-items: flex-end;
+    min-height: 8px;
+  }
 }
 
 .logo {
   h1 {
     font-size: 0;
+    margin: 0;
   }
 
   a {
@@ -46,37 +56,41 @@
   }
 
   img {
-    max-height: 80px;
+    max-height: 70px;
     width: auto;
+    padding: 5px 0 5px 0;
   }
 }
 
 .header-phone {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   height: 100%;
+  padding-bottom: 5px;
 
   @include breakpoint(small down) {
     justify-content: center;
     margin-top: 15px;
+    align-items: center;
+    padding-bottom: 0;
   }
 
   .phone-number {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    color: #333;
+    color: $main-text;
     text-decoration: none;
+    font-family: $font;
 
     &:hover {
-      color: $primary-color;
+      color: $main-color;
     }
   }
 }
 
 @include breakpoint(small down) {
-  /* TOP BAR Mobile STYLING */
-
+  /* Mobile Menu Styling */
   .menu-grid-container {
     padding-left: 0;
     padding-right: 0;
@@ -93,78 +107,112 @@
     }
   }
 
-  //.title-bar {
-  //  line-height: 45px;
-  //
-  //  .menu-icon {
-  //    padding: 0;
-  //    border: none;
-  //    background-color: transparent;
-  //
-  //    //@include menu-icon($white, $white, 30px, 24px, 3px);
-  //  }
-  //}
+  .title-bar {
+    background: transparent;
+    padding: 0;
+    border: none;
+
+    .title-bar-title {
+      display: none;
+    }
+
+    .menu-icon {
+      position: relative;
+      padding: 15px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      @include menu-icon($main-text, $main-color, 24px, 18px, 3px);
+
+      &.is-active {
+        span {
+          &,
+          &::before,
+          &::after {
+            background-color: $main-color;
+          }
+        }
+      }
+    }
+  }
 
   .top-bar {
     display: none;
-    background: $primary-color; /* menu list background color */
+    background: $white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e0e0e0;
   }
 
   .header-menu {
     background: transparent;
 
     li {
-      > a {
-        background: $primary-color; /* menu item background color */
-        color: $white; /* menu item text color */
-        line-height: 45px;
+      border-bottom: 1px solid #f0f0f0;
 
+      > a {
+        background: $white;
+        color: $main-text;
+        line-height: 50px;
+        padding: 0 20px;
+        font-family: $font;
+        font-size: 16px;
+
+        &:hover,
         &:focus {
-          &,
-          & + .submenu-toggle {
-            background: darken(
-              $primary-color,
-              5
-            ); /* menu item background color on hover */
-          }
+          background: #f8f8f8;
+          color: $main-color;
         }
       }
 
       &.current-menu-item,
       &.current_page_ancestor,
       &.current_page_parent {
-        > a,
-        .submenu-toggle {
-          background: lighten(
-            $primary-color,
-            5
-          ); /* current/parent menu item background color */
+        > a {
+          background: #f8f8f8;
+          color: $main-color;
         }
       }
 
       &[aria-expanded='true'] {
-        > a,
-        .submenu-toggle {
-          background: darken(
-            $primary-color,
-            3
-          ); /* menu item background color on open dropdown */
+        > a {
+          background: #f8f8f8;
+          color: $main-color;
         }
       }
     }
 
     .submenu-toggle {
-      padding: 0;
+      padding: 0 15px;
+      background: transparent;
+      border: none;
+      color: $main-text;
+
+      &::after {
+        content: '\f107';
+        font-family: $fa;
+        font-weight: 900;
+      }
+
+      &[aria-expanded='true']::after {
+        content: '\f106';
+      }
     }
 
     .submenu {
+      background: #f8f8f8;
+
       a {
-        padding-left: #{get-side($accordionmenu-padding, 'left') * 1.65};
+        padding-left: 40px;
+        font-size: 14px;
+        line-height: 45px;
       }
 
       .submenu {
+        background: #f0f0f0;
+
         a {
-          padding-left: #{get-side($accordionmenu-padding, 'left') * 2.3};
+          padding-left: 60px;
         }
       }
     }
@@ -172,29 +220,27 @@
 }
 
 @include breakpoint(medium) {
-  /* TOP BAR STYLING */
-
+  /* Desktop Menu Styling */
   .header-menu.menu {
-    /* Align menu items to the right */
-    // justify-content: flex-end;
-
-    /* Align menu items to the center */
     justify-content: center;
+    align-items: flex-end;
 
     li {
+      position: relative;
+
       > a {
-        /* Regular menu item style */
-        line-height: 60px;
-        color: #666;
+        line-height: 50px;
+        color: $main-text;
         font-weight: 500;
         font-size: 16px;
-        padding: 0 20px;
-        text-transform: uppercase;
+        padding: 0 25px;
         letter-spacing: 0.5px;
+        font-family: $font;
+        text-decoration: none;
+        display: block;
 
         &:hover {
-          /* menu item style on hover */
-          color: #d32f2f;
+          color: $main-color;
         }
       }
 
@@ -202,14 +248,12 @@
       &.current_page_ancestor,
       &.current_page_parent {
         > a {
-          /* Style of Current page and Ancestor page */
-          color: #d32f2f;
+          color: $main-color;
         }
       }
 
       &.has-dropdown {
         > a {
-          /* Style of item with dropdown */
           position: relative;
 
           &::after {
@@ -225,44 +269,50 @@
             border-top: 4px solid currentColor;
           }
         }
-      }
 
-      &.is-active > a {
-        /* Parent link style on dropdown hover */
-        color: #d32f2f;
+        &:hover {
+          > a {
+            color: $main-color;
+          }
+
+          .submenu {
+            display: block;
+          }
+        }
       }
     }
 
-    /* Dropdown item styling */
-
+    /* Dropdown Styling */
     .submenu {
-      z-index: 11;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
       display: none;
-      background: $white;
-      border: 1px solid #e0e0e0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       min-width: 200px;
-
-      &.js-dropdown-active {
-        display: block;
-      }
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
 
       li {
         > a {
-          /* Regular link in dropdown */
-          background: $white;
-          color: #666;
+          background: transparent;
+          color: $main-text;
           line-height: 40px;
-          padding: 10px 20px;
+          padding: 12px 20px;
           font-size: 14px;
           text-transform: none;
           letter-spacing: normal;
-          border-bottom: 1px solid #f0f0f0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+          transition: all 0.2s ease;
 
           &:hover {
-            /* Dropdown link on hover */
-            background: #f8f8f8;
-            color: #d32f2f;
+            background: rgba(211, 51, 57, 0.1);
+            color: $main-color;
+            padding-left: 25px;
           }
         }
 
@@ -270,8 +320,8 @@
         &.current_page_ancestor,
         &.current_page_parent {
           > a {
-            background: #f8f8f8;
-            color: #d32f2f;
+            background: rgba(211, 51, 57, 0.1);
+            color: $main-color;
           }
         }
 
@@ -280,9 +330,22 @@
         }
       }
 
+      /* Second level dropdown */
       .submenu {
-        /* Styles for 2nd level dropdown menu */
+        top: 0;
+        left: 100%;
+        border-radius: 0 8px 8px 0;
       }
     }
+  }
+}
+
+/* Navigation container alignment */
+.top-bar {
+  @include breakpoint(medium) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0;
   }
 }

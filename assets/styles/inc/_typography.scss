@@ -14,6 +14,8 @@ h6,
 .h4,
 .h5,
 .h6 {
+  font-family: $font;
+
   a {
     color: inherit;
   }
@@ -22,35 +24,43 @@ h6,
 h1,
 .h1 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 h2,
 .h2 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 h3,
 .h3 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 h4,
 .h4 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 h5,
 .h5 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 h6,
 .h6 {
   /* basic heading styles */
+  font-family: $font;
 }
 
 p {
   /* basic paragraph styles */
+  font-family: $font;
+
   &:empty {
     display: none;
   }
@@ -63,20 +73,24 @@ p {
 ul {
   /* basic list styles */
   font-size: inherit;
+  font-family: $font;
 
   li {
     /* basic list-item styles */
+    font-family: $font;
   }
 }
 
 address {
   font-style: normal;
   margin-bottom: $global-margin;
+  font-family: $font;
 }
 
 a {
   color: $primary-color;
   transition: all 0.2s ease-in-out;
+  font-family: $font;
 
   &:hover,
   &:focus {

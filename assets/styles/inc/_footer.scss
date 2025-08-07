@@ -1,36 +1,163 @@
 .footer {
   margin-top: auto;
-}
+  background-color: #d32f2f;
+  color: $white;
+  padding-top: 40px;
+  font-family: $font;
 
-.footer__logo {
-  img {
-    max-height: 120px;
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: rgba($white, 0.8);
+      text-decoration: underline;
+    }
   }
 }
 
-.footer__sp {
-  text-align: right;
+.footer__main {
+  padding-bottom: 8rem;
+
+  .grid-x {
+    align-items: flex-start;
+  }
 }
 
-.footer-menu {
-  @include list-unstyled;
+.footer__left {
+  @include breakpoint(large) {
+    display: flex;
+    align-items: flex-start;
+  }
+}
 
-  text-align: center;
+.footer__links-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+
+  @include breakpoint(medium down) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.footer__column {
+  flex: 0 0 auto;
+
+  @include breakpoint(small down) {
+    margin-bottom: 20px;
+  }
+}
+
+.footer__links {
+  @include list-unstyled;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   li {
-    display: inline-block;
-
     a {
-      display: block;
-      padding: 5px 10px;
+      font-size: 14px;
+      line-height: 1.4;
+      font-family: $font;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
+}
+
+.footer__contact {
+  @include breakpoint(large) {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 100px;
+    gap: 15px;
+  }
+
+  @include breakpoint(medium down) {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+.footer__phone {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: $font;
+
+  @include breakpoint(large) {
+    justify-content: flex-end;
+  }
+
+  @include breakpoint(medium down) {
+    justify-content: center;
+  }
+}
+
+.footer__phone-icon {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.footer__phone-number {
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
+    color: rgba($white, 0.8);
+  }
+}
+
+.footer__address {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: $font;
+
+  @include breakpoint(large) {
+    text-align: right;
+  }
+
+  @include breakpoint(medium down) {
+    text-align: center;
   }
 }
 
 .footer__copy {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: $light-gray;
   font-size: 12px;
   text-align: center;
+  color: rgba($white, 0.8);
+  font-family: $font;
+}
+
+// Social icons styling
+.stay-tuned {
+  @include breakpoint(large) {
+    justify-content: flex-end;
+  }
+
+  @include breakpoint(medium down) {
+    justify-content: center;
+  }
+}
+
+.stay-tuned__link {
+  .fab {
+    color: $white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: rgba($white, 0.7);
+    }
+  }
 }

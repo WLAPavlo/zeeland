@@ -34,7 +34,7 @@ use theme\FoundationNavigation;
     <?php if (have_rows('header_top_menu', 'options')) { ?>
         <div class="header-top">
             <div class="grid-container">
-                <div class="grid-x align-right">
+                <div class="grid-x align-right justify-content-end">
                     <div class="cell shrink">
                         <ul class="header-top-menu">
                             <?php while (have_rows('header_top_menu', 'options')) {
@@ -53,7 +53,7 @@ use theme\FoundationNavigation;
     <!-- Main header -->
     <div class="grid-container menu-grid-container">
         <div class="grid-x grid-margin-x">
-            <div class="medium-3 small-12 cell">
+            <div class="medium-3 small-12 cell align-self-center">
                 <div class="logo text-center medium-text-left">
                     <h1>
                         <?php
@@ -70,25 +70,24 @@ use theme\FoundationNavigation;
                     </h1>
                 </div>
             </div>
-            <div class="medium-6 small-12 cell">
+            <div class="medium-6 small-12 cell align-self-center">
                 <?php if (has_nav_menu('header-menu')) { ?>
-                    <div class="title-bar hide-for-medium" data-responsive-toggle="main-menu" data-hide-for="medium">
+                    <div class="title-bar hide-for-medium" data-responsive-toggle="main-menu" data-hide-for="medium" data-toggler=".expanded">
                         <button class="menu-icon" type="button" data-toggle aria-label="Menu" aria-controls="main-menu">
                             <span></span></button>
-                        <div class="title-bar-title">Menu</div>
                     </div>
 
                     <nav class="top-bar" id="main-menu">
                         <?php wp_nav_menu([
                             'theme_location' => 'header-menu',
                             'menu_class' => 'menu header-menu',
-                            'items_wrap' => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true" data-multi-open="false" data-close-on-click-inside="false">%3$s</ul>',
+                            'items_wrap' => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true" data-multi-open="false" data-close-on-click-inside="false" data-auto-height="true">%3$s</ul>',
                             'walker' => new FoundationNavigation(),
                         ]); ?>
                     </nav>
                 <?php } ?>
             </div>
-            <div class="medium-3 small-12 cell">
+            <div class="medium-3 small-12 cell align-self-center">
                 <?php $header_phone = get_field('header_phone', 'options'); ?>
                 <?php if ($header_phone) { ?>
                     <div class="header-phone text-center medium-text-right">

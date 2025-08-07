@@ -1,5 +1,5 @@
 <?php if (have_rows('socials', 'options')) { ?>
-    <ul class="stay-tuned">
+    <ul class="stay-tuned" style="display: flex; gap: 15px;">
         <?php while (have_rows('socials', 'options')) {
             the_row(); ?>
             <?php $social_network = get_sub_field('social_network'); ?>
