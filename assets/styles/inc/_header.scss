@@ -1,9 +1,9 @@
 /* Header Top Bar */
 .header-top {
   background-color: $main-color;
-  padding: 8px 0;
+  padding: 4px 0; // Зменшено з 8px до 4px
   font-size: 14px;
-  min-height: 32px;
+  min-height: 24px; // Зменшено з 32px до 24px
   display: flex;
   align-items: center;
 
@@ -16,14 +16,14 @@
   @include list-unstyled;
 
   display: flex;
-  gap: 20px;
+  gap: 15px; // Зменшено з 20px до 15px
   margin: 0;
 
   li {
     a {
       color: $white;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px; // Зменшено з 14px до 13px
       font-family: $font;
 
       &:hover {
@@ -40,8 +40,7 @@
   position: relative;
 
   .grid-x {
-    align-items: flex-end;
-    min-height: 8px;
+    align-items: center; // Змінено з flex-end на center
   }
 }
 
@@ -56,28 +55,26 @@
   }
 
   img {
-    max-height: 70px;
+    max-height: 60px; // Зменшено з 70px до 60px
     width: auto;
-    padding: 5px 0 5px 0;
+    padding: 8px 0; // Зменшено з 5px до 8px для кращого центрування
   }
 }
 
 .header-phone {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
   height: 100%;
-  padding-bottom: 5px;
 
   @include breakpoint(small down) {
     justify-content: center;
-    margin-top: 15px;
-    align-items: center;
+    margin-top: 10px;
     padding-bottom: 0;
   }
 
   .phone-number {
-    font-size: 26px;
+    font-size: 24px; // Зменшено з 26px до 24px
     font-weight: bold;
     color: $main-text;
     text-decoration: none;
@@ -111,6 +108,11 @@
     background: transparent;
     padding: 0;
     border: none;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 1001;
 
     .title-bar-title {
       display: none;
@@ -118,12 +120,13 @@
 
     .menu-icon {
       position: relative;
-      padding: 15px;
+      padding: 10px;
       border: none;
       background-color: transparent;
       cursor: pointer;
+      z-index: 1002;
 
-      @include menu-icon($main-text, $main-color, 24px, 18px, 3px);
+      @include menu-icon($main-text, $main-color, 20px, 16px, 2px);
 
       &.is-active {
         span {
@@ -142,21 +145,35 @@
     background: $white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-top: 1px solid #e0e0e0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    &[data-toggler].expanded {
+      display: block;
+    }
   }
 
   .header-menu {
     background: transparent;
+    margin: 0;
+    padding: 0;
 
     li {
       border-bottom: 1px solid #f0f0f0;
+      position: relative;
 
       > a {
         background: $white;
         color: $main-text;
-        line-height: 50px;
+        line-height: 40px;
         padding: 0 20px;
         font-family: $font;
-        font-size: 16px;
+        font-size: 14px;
+        display: block;
+        text-decoration: none;
 
         &:hover,
         &:focus {
@@ -180,32 +197,63 @@
           color: $main-color;
         }
       }
-    }
 
-    .submenu-toggle {
-      padding: 0 15px;
-      background: transparent;
-      border: none;
-      color: $main-text;
+      &.has-dropdown {
+        > a {
+          padding-right: 50px;
+        }
 
-      &::after {
-        content: '\f107';
-        font-family: $fa;
-        font-weight: 900;
-      }
+        .submenu-toggle {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0 15px;
+          background: transparent;
+          border: none;
+          color: $main-text;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
 
-      &[aria-expanded='true']::after {
-        content: '\f106';
+          &::after {
+            content: '\f107';
+            font-family: $fa;
+            font-weight: 900;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+          }
+
+          &[aria-expanded='true'] {
+            &::after {
+              transform: rotate(180deg);
+            }
+          }
+        }
       }
     }
 
     .submenu {
       background: #f8f8f8;
+      display: none;
+
+      &.is-active {
+        display: block;
+      }
 
       a {
         padding-left: 40px;
-        font-size: 14px;
-        line-height: 45px;
+        font-size: 13px;
+        line-height: 40px;
+        background: #f8f8f8;
+
+        &:hover {
+          background: #f0f0f0;
+          color: $main-color;
+        }
       }
 
       .submenu {
@@ -213,9 +261,19 @@
 
         a {
           padding-left: 60px;
+          background: #f0f0f0;
+
+          &:hover {
+            background: #e8e8e8;
+          }
         }
       }
     }
+  }
+
+  /* Hide header phone on mobile */
+  .header-phone {
+    display: none;
   }
 }
 
@@ -223,7 +281,7 @@
   /* Desktop Menu Styling */
   .header-menu.menu {
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 
     li {
       position: relative;
@@ -232,9 +290,9 @@
         line-height: 50px;
         color: $main-text;
         font-weight: 500;
-        font-size: 16px;
-        padding: 0 25px;
-        letter-spacing: 0.5px;
+        font-size: 15px; // Зменшено з 16px до 15px
+        padding: 0 20px; // Зменшено з 25px до 20px
+        letter-spacing: 0.3px; // Зменшено з 0.5px до 0.3px
         font-family: $font;
         text-decoration: none;
         display: block;
@@ -253,23 +311,6 @@
       }
 
       &.has-dropdown {
-        > a {
-          position: relative;
-
-          &::after {
-            content: '';
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 4px solid currentColor;
-          }
-        }
-
         &:hover {
           > a {
             color: $main-color;
@@ -282,32 +323,36 @@
       }
     }
 
-    /* Dropdown Styling */
+    /* Dropdown Styling - зроблено компактнішим */
     .submenu {
       position: absolute;
       top: 100%;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 1000;
       display: none;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       min-width: 200px;
+      max-width: 280px; // Обмежено максимальну ширину
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       border-radius: 0 0 8px 8px;
       overflow: hidden;
+      padding: 10px 0; // Зменшено padding
 
       li {
         > a {
           background: transparent;
           color: $main-text;
-          line-height: 40px;
-          padding: 12px 20px;
-          font-size: 14px;
+          line-height: 36px; // Зменшено з 40px до 36px
+          padding: 8px 20px; // Зменшено padding
+          font-size: 13px; // Зменшено з 14px до 13px
           text-transform: none;
           letter-spacing: normal;
           border-bottom: 1px solid rgba(0, 0, 0, 0.05);
           transition: all 0.2s ease;
+          white-space: nowrap;
 
           &:hover {
             background: rgba(211, 51, 57, 0.1);
@@ -335,6 +380,8 @@
         top: 0;
         left: 100%;
         border-radius: 0 8px 8px 0;
+        width: 200px;
+        transform: none;
       }
     }
   }
@@ -344,7 +391,7 @@
 .top-bar {
   @include breakpoint(medium) {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     padding-bottom: 0;
   }

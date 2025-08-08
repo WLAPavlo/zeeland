@@ -57,14 +57,7 @@ use theme\FoundationNavigation;
                 <div class="logo text-center medium-text-left">
                     <h1>
                         <?php
-                        $header_logo = get_field('header_logo', 'options');
-                        if ($header_logo) {
-                            echo '<a href="' . home_url('/') . '">';
-                            echo wp_get_attachment_image($header_logo['id'], 'medium', false, ['alt' => get_bloginfo('name')]);
-                            echo '</a>';
-                        } else {
-                            show_custom_logo();
-                        }
+                        show_custom_logo();
                         ?>
                         <span class="show-for-sr"><?php echo get_bloginfo('name'); ?></span>
                     </h1>
@@ -81,7 +74,7 @@ use theme\FoundationNavigation;
                         <?php wp_nav_menu([
                             'theme_location' => 'header-menu',
                             'menu_class' => 'menu header-menu',
-                            'items_wrap' => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true" data-multi-open="false" data-close-on-click-inside="false" data-auto-height="true">%3$s</ul>',
+                            'items_wrap' => '<div class="grid-container"><div class="grid-x"><ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true" data-multi-open="false" data-close-on-click-inside="false" data-auto-height="true">%3$s</ul></div></div>',
                             'walker' => new FoundationNavigation(),
                         ]); ?>
                     </nav>

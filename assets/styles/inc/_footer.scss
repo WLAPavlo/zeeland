@@ -2,7 +2,7 @@
   margin-top: auto;
   background-color: #d32f2f;
   color: $white;
-  padding-top: 40px;
+  padding-top: 30px; // Зменшено з 40px до 30px
   font-family: $font;
 
   a {
@@ -17,10 +17,19 @@
 }
 
 .footer__main {
-  padding-bottom: 8rem;
+  padding-bottom: 40px; // Зменшено з 8rem до 40px
+
+  @include breakpoint(small down) {
+    padding-bottom: 30px; // Зменшено з 4rem до 30px
+  }
 
   .grid-x {
     align-items: flex-start;
+
+    @include breakpoint(small down) {
+      flex-direction: column;
+      gap: 25px; // Зменшено з 30px до 25px
+    }
   }
 }
 
@@ -29,17 +38,24 @@
     display: flex;
     align-items: flex-start;
   }
+
+  @include breakpoint(small down) {
+    order: 2;
+  }
 }
 
 .footer__links-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  width: 100%;
+  gap: 30px;
 
   @include breakpoint(medium down) {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+  }
+
+  @include breakpoint(small down) {
+    gap: 12px;
   }
 }
 
@@ -47,7 +63,7 @@
   flex: 0 0 auto;
 
   @include breakpoint(small down) {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 }
 
@@ -55,11 +71,11 @@
   @include list-unstyled;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 
   li {
     a {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.4;
       font-family: $font;
 
@@ -76,20 +92,25 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 100px;
-    gap: 15px;
+    gap: 12px;
   }
 
   @include breakpoint(medium down) {
-    text-align: center;
-    margin-top: 20px;
+    text-align: left;
+    order: 1;
+  }
+
+  @include breakpoint(small down) {
+    order: 1;
+    padding-left: 0;
+    gap: 15px;
   }
 }
 
 .footer__phone {
   display: flex;
   align-items: center;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   font-family: $font;
 
@@ -98,13 +119,13 @@
   }
 
   @include breakpoint(medium down) {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
 .footer__phone-icon {
-  margin-right: 10px;
-  font-size: 16px;
+  margin-right: 8px;
+  font-size: 14px;
 }
 
 .footer__phone-number {
@@ -117,7 +138,7 @@
 }
 
 .footer__address {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   font-family: $font;
 
@@ -126,38 +147,97 @@
   }
 
   @include breakpoint(medium down) {
-    text-align: center;
+    text-align: left;
   }
 }
 
 .footer__copy {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   font-size: 12px;
   text-align: center;
   color: rgba($white, 0.8);
   font-family: $font;
+
+  @include breakpoint(small down) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 
 // Social icons styling
 .stay-tuned {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2px !important;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
   @include breakpoint(large) {
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   @include breakpoint(medium down) {
     justify-content: center;
   }
+
+  @include breakpoint(small down) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
 }
 
 .stay-tuned__link {
-  .fab {
-    color: $white;
-    font-size: 20px;
-    transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: $white;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 
-    &:hover {
-      color: rgba($white, 0.7);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .fab {
+    display: block;
+    color: #d32f2f;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+}
+
+// Responsive adjustments
+@include breakpoint(small down) {
+  .footer {
+    padding-top: 25px;
+  }
+
+  .footer__main {
+    .grid-x {
+      gap: 20px;
+    }
+  }
+
+  .footer__contact {
+    gap: 12px;
+  }
+
+  .stay-tuned {
+    gap: 6px;
+
+    .stay-tuned__link {
+      width: 28px;
+      height: 28px;
+
+      .fab {
+        font-size: 14px;
+      }
     }
   }
 }
