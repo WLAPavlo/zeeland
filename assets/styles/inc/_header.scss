@@ -1,14 +1,18 @@
 /* Header Top Bar */
 .header-top {
   background-color: $main-color;
-  padding: 4px 0; // Зменшено з 8px до 4px
   font-size: 14px;
-  min-height: 24px; // Зменшено з 32px до 24px
+  min-height: 24px;
   display: flex;
   align-items: center;
 
   .grid-x {
     justify-content: flex-end;
+  }
+
+  @include breakpoint(small down) {
+    padding: 8px 0;
+    min-height: 32px;
   }
 }
 
@@ -16,15 +20,26 @@
   @include list-unstyled;
 
   display: flex;
-  gap: 15px; // Зменшено з 20px до 15px
+  gap: 15px;
   margin: 0;
+
+  @include breakpoint(small down) {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   li {
     a {
       color: $white;
       text-decoration: none;
-      font-size: 13px; // Зменшено з 14px до 13px
+      font-size: 13px;
       font-family: $font;
+
+      @include breakpoint(small down) {
+        font-size: 12px;
+        padding: 2px 4px;
+      }
 
       &:hover {
         text-decoration: underline;
@@ -40,11 +55,37 @@
   position: relative;
 
   .grid-x {
-    align-items: center; // Змінено з flex-end на center
+    align-items: center;
+
+    @include breakpoint(small down) {
+      align-items: center;
+    }
+  }
+}
+
+.menu-grid-container {
+  .grid-x {
+    align-items: center;
+
+    @include breakpoint(small down) {
+      align-items: center;
+      position: relative;
+    }
   }
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 10px 0;
+
+  @include breakpoint(small down) {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 0;
+  }
+
   h1 {
     font-size: 0;
     margin: 0;
@@ -55,9 +96,12 @@
   }
 
   img {
-    max-height: 60px; // Зменшено з 70px до 60px
+    max-height: 50px;
     width: auto;
-    padding: 8px 0; // Зменшено з 5px до 8px для кращого центрування
+
+    @include breakpoint(small down) {
+      max-height: 40px;
+    }
   }
 }
 
@@ -65,20 +109,31 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: 100%;
+  padding: 0;
+
+  @include breakpoint(medium down) {
+    display: none;
+  }
 
   @include breakpoint(small down) {
-    justify-content: center;
-    margin-top: 10px;
-    padding-bottom: 0;
+    display: none;
   }
 
   .phone-number {
-    font-size: 24px; // Зменшено з 26px до 24px
+    font-size: 24px;
     font-weight: bold;
     color: $main-text;
     text-decoration: none;
     font-family: $font;
+    margin-bottom: 0;
+
+    @include breakpoint(medium down) {
+      font-size: 18px;
+    }
+
+    @include breakpoint(small down) {
+      font-size: 16px;
+    }
 
     &:hover {
       color: $main-color;
@@ -86,8 +141,8 @@
   }
 }
 
+/* Mobile Menu Styling */
 @include breakpoint(small down) {
-  /* Mobile Menu Styling */
   .menu-grid-container {
     padding-left: 0;
     padding-right: 0;
@@ -120,19 +175,78 @@
 
     .menu-icon {
       position: relative;
-      padding: 10px;
+      padding: 0;
       border: none;
-      background-color: transparent;
+      background: transparent !important;
       cursor: pointer;
       z-index: 1002;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      @include menu-icon($main-text, $main-color, 20px, 16px, 2px);
+      // Clean all Foundation styles
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
 
+      // Remove all Foundation pseudo-elements
+      &::before,
+      &::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      // Our custom hamburger - only one span
+      span {
+        position: relative;
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: $main-text;
+        transition: all 0.3s ease;
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: $main-text;
+          transition: all 0.3s ease;
+        }
+
+        &::before {
+          top: -7px;
+        }
+
+        &::after {
+          top: 7px;
+        }
+      }
+
+      // Active state (cross)
       &.is-active {
         span {
-          &,
-          &::before,
+          background-color: transparent;
+
+          &::before {
+            top: 0;
+            transform: rotate(45deg);
+            background-color: $main-color;
+          }
+
           &::after {
+            top: 0;
+            transform: rotate(-45deg);
             background-color: $main-color;
           }
         }
@@ -150,6 +264,8 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    max-height: 70vh;
+    overflow-y: auto;
 
     &[data-toggler].expanded {
       display: block;
@@ -165,15 +281,26 @@
       border-bottom: 1px solid #f0f0f0;
       position: relative;
 
+      &:last-child {
+        border-bottom: none;
+      }
+
       > a {
         background: $white;
         color: $main-text;
         line-height: 40px;
-        padding: 0 20px;
+        padding: 0 15px;
         font-family: $font;
         font-size: 14px;
         display: block;
         text-decoration: none;
+        position: relative;
+
+        // Remove Foundation arrows
+        &::before,
+        &::after {
+          display: none !important;
+        }
 
         &:hover,
         &:focus {
@@ -188,6 +315,7 @@
         > a {
           background: #f8f8f8;
           color: $main-color;
+          font-weight: 600;
         }
       }
 
@@ -200,38 +328,30 @@
 
       &.has-dropdown {
         > a {
-          padding-right: 50px;
+          padding-right: 15px;
         }
 
+        // Completely remove submenu-toggle
         .submenu-toggle {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          padding: 0 15px;
-          background: transparent;
-          border: none;
+          display: none !important;
+        }
+
+        // Add our own arrow via CSS
+        > a::after {
+          content: '\25BC'; // Unicode down arrow
+          font-size: 8px;
           color: $main-text;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
+          margin-left: 6px;
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
 
-          &::after {
-            content: '\f107';
-            font-family: $fa;
-            font-weight: 900;
-            font-size: 12px;
-            transition: transform 0.3s ease;
-          }
+        &[aria-expanded='true'] > a::after {
+          transform: rotate(180deg);
+          color: $main-color;
+        }
 
-          &[aria-expanded='true'] {
-            &::after {
-              transform: rotate(180deg);
-            }
-          }
+        &:hover > a::after {
+          color: $main-color;
         }
       }
     }
@@ -245,10 +365,16 @@
       }
 
       a {
-        padding-left: 40px;
+        padding-left: 30px;
         font-size: 13px;
-        line-height: 40px;
+        line-height: 36px;
         background: #f8f8f8;
+
+        // Remove Foundation arrows
+        &::before,
+        &::after {
+          display: none !important;
+        }
 
         &:hover {
           background: #f0f0f0;
@@ -260,8 +386,15 @@
         background: #f0f0f0;
 
         a {
-          padding-left: 60px;
+          padding-left: 45px;
           background: #f0f0f0;
+          font-size: 12px;
+
+          // Remove Foundation arrows
+          &::before,
+          &::after {
+            display: none !important;
+          }
 
           &:hover {
             background: #e8e8e8;
@@ -270,35 +403,42 @@
       }
     }
   }
-
-  /* Hide header phone on mobile */
-  .header-phone {
-    display: none;
-  }
 }
 
+/* Desktop Menu Styling */
 @include breakpoint(medium) {
-  /* Desktop Menu Styling */
   .header-menu.menu {
     justify-content: center;
     align-items: center;
+    padding-bottom: 0;
+    width: 100%;
+    max-width: none;
+    flex-wrap: nowrap;
 
     li {
       position: relative;
+      flex-shrink: 0;
 
       > a {
         line-height: 50px;
         color: $main-text;
         font-weight: 500;
-        font-size: 15px; // Зменшено з 16px до 15px
-        padding: 0 20px; // Зменшено з 25px до 20px
-        letter-spacing: 0.3px; // Зменшено з 0.5px до 0.3px
+        font-size: 15px;
+        padding: 0 12px;
+        letter-spacing: 0.3px;
         font-family: $font;
         text-decoration: none;
         display: block;
+        position: relative;
+        white-space: nowrap;
 
         &:hover {
           color: $main-color;
+        }
+
+        // Remove Foundation arrows
+        &::after {
+          display: none !important;
         }
       }
 
@@ -307,6 +447,7 @@
       &.current_page_parent {
         > a {
           color: $main-color;
+          font-weight: 600;
         }
       }
 
@@ -323,41 +464,41 @@
       }
     }
 
-    /* Dropdown Styling - зроблено компактнішим */
+    /* Dropdown Styling - FIX SUBMENU WIDTH */
     .submenu {
       position: absolute;
       top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      transform: none;
       z-index: 1000;
       display: none;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      min-width: 200px;
-      max-width: 280px; // Обмежено максимальну ширину
+      width: auto;
+      min-width: 160px;
+      white-space: nowrap;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       border-radius: 0 0 8px 8px;
       overflow: hidden;
-      padding: 10px 0; // Зменшено padding
+      padding: 8px 0;
 
       li {
         > a {
           background: transparent;
           color: $main-text;
-          line-height: 36px; // Зменшено з 40px до 36px
-          padding: 8px 20px; // Зменшено padding
-          font-size: 13px; // Зменшено з 14px до 13px
+          line-height: 32px;
+          font-size: 14px;
           text-transform: none;
           letter-spacing: normal;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
           transition: all 0.2s ease;
           white-space: nowrap;
+          font-weight: 400;
+          padding: 0 16px;
 
           &:hover {
             background: rgba(211, 51, 57, 0.1);
             color: $main-color;
-            padding-left: 25px;
           }
         }
 
@@ -367,6 +508,7 @@
           > a {
             background: rgba(211, 51, 57, 0.1);
             color: $main-color;
+            font-weight: 500;
           }
         }
 
@@ -379,9 +521,10 @@
       .submenu {
         top: 0;
         left: 100%;
-        border-radius: 0 8px 8px 0;
-        width: 200px;
         transform: none;
+        border-radius: 0 8px 8px 0;
+        width: auto;
+        min-width: 160px;
       }
     }
   }
@@ -394,5 +537,63 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 0;
+    flex: 1;
+  }
+}
+
+/* Tablet and mobile layout adjustments */
+@include breakpoint(medium down) {
+  .header {
+    .grid-x {
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+  }
+
+  .logo {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .header-phone {
+    order: 2;
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  .top-bar {
+    order: 3;
+    width: 100%;
+  }
+
+  // Hide title-bar on medium screens
+  .title-bar {
+    @include breakpoint(medium only) {
+      display: none;
+    }
+  }
+}
+
+/* Medium screens only - show navigation normally */
+@include breakpoint(medium only) {
+  .top-bar {
+    display: flex !important;
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    max-height: none;
+    overflow: visible;
+    order: 3;
+    width: 100%;
+  }
+
+  .header-menu {
+    justify-content: center;
+
+    li > a {
+      font-size: 13px;
+      padding: 0 8px;
+    }
   }
 }
