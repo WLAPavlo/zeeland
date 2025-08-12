@@ -1,233 +1,209 @@
-/* Zeeland Values Section Styles */
-.zl-section-about {
-  padding: 80px 0 !important;
-  position: relative !important;
-}
+.zl-section-hero {
+  background-repeat: no-repeat;
+  background-size: cover;
 
-.zl-row-about {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 60px !important;
-}
-
-/* Image Column */
-.zl-col-about-image {
-  flex: 0 0 45% !important;
-  width: 45% !important;
-}
-
-.zl-about-image {
-  width: 100% !important;
-  height: auto !important;
-  border-radius: 8px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-  display: block !important;
-}
-
-/* Text Column */
-.zl-col-about-text {
-  flex: 1 !important;
-  width: 55% !important;
-  padding-left: 0 !important;
-}
-
-.zl-about-title {
-  font-size: 48px !important;
-  font-weight: 700 !important;
-  color: #333333 !important;
-  margin-bottom: 30px !important;
-  line-height: 1.2 !important;
-  font-family: 'Arial', sans-serif !important;
-}
-
-.zl-about-description {
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  color: #666666 !important;
-  margin-bottom: 40px !important;
-  font-family: 'Arial', sans-serif !important;
-}
-
-.zl-about-description p {
-  margin-bottom: 0 !important;
-}
-
-/* Button Styles */
-.zl-about-cta {
-  display: inline-block !important;
-  padding: 15px 30px !important;
-  background-color: transparent !important;
-  color: #d32f2f !important;
-  border: 2px solid #d32f2f !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-  cursor: pointer !important;
-  font-family: 'Arial', sans-serif !important;
-}
-
-.zl-about-cta:hover {
-  background-color: #d32f2f !important;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3) !important;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .zl-section-about {
-    padding: 50px 0 !important;
+  .zl-row-hero {
+    height: 530px;
+  }
+  .zl-col-hero {
+    height: 530px;
   }
 
-  .zl-row-about {
-    flex-direction: column !important;
-    gap: 40px !important;
-    padding: 0 15px !important;
-  }
-
-  .zl-col-about-image,
-  .zl-col-about-text {
-    flex: none !important;
-    width: 100% !important;
-  }
-
-  .zl-about-title {
-    font-size: 36px !important;
-    margin-bottom: 20px !important;
-    text-align: center !important;
-  }
-
-  .zl-about-description {
-    text-align: center !important;
-    margin-bottom: 30px !important;
-  }
-
-  .zl-about-cta {
-    display: block !important;
-    text-align: center !important;
-    max-width: 200px !important;
-    margin: 0 auto !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .zl-about-title {
-    font-size: 28px !important;
-  }
-
-  .zl-about-description {
-    font-size: 14px !important;
-  }
-
-  .zl-about-cta {
-    padding: 12px 24px !important;
-    font-size: 14px !important;
-  }
-}
-
-/* Additional overrides for WPBakery conflicts */
-.zl-section-about * {
-  box-sizing: border-box !important;
-}
-
-.zl-section-about .wpb_column {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.zl-section-about .vc_column_container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.zl-section-about .wpb_single_image {
-  position: relative;
-  min-height: 343px;
-  width: 100%;
-  overflow: hidden;
-  img {
-    left: 0;
-    top: 0;
+  .block-home-hero {
+    background-color: #e52027;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    height: 40%;
+    width: 480px;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding-left: 60px;
+
+    p {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 900;
+      text-align: right;
+    }
   }
 }
 
-.zl-section-about .wpb_button,
-.zl-section-about .vc_btn,
-.zl-section-about .vc_general,
-.zl-section-about .vc_btn3 {
-  background: transparent !important;
-  border: 1px solid #c62828 !important;
-  color: #c62828 !important;
-  padding: 12px 25px !important;
-  border-radius: 0 !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  text-transform: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-.zl-section-about .wpb_button:hover,
-.zl-section-about .vc_btn:hover,
-.zl-section-about .vc_general:hover,
-.zl-section-about .vc_btn3:hover {
-  background: #c62828 !important;
-  color: #ffffff !important;
-  border: 1px solid #c62828 !important;
-}
-
-.zl-section-about .zl-about-cta,
-.zl-section-about a.zl-about-cta,
-.zl-section-about button.zl-about-cta {
-  all: unset !important;
-  display: inline-block !important;
-  //padding: 12px 25px !important;
-  background: transparent !important;
-  color: #c62828 !important;
-  border: 1px solid #c62828 !important;
-  font-size: 14px !important;
-  font-family: Arial, sans-serif !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
-}
-
-.zl-section-about .zl-about-cta:hover {
-  background: #c62828 !important;
-  color: #ffffff !important;
-}
-
+.zl-section-about,
 .grid-container {
   margin: 0 auto !important;
   left: -15px !important;
+
+  .zl-row-about {
+    .zl-col-about {
+      .zl-about-image {
+      }
+
+      .zl-about-cta {
+        text-align: center;
+
+        .vc_btn3-style-outline-custom {
+          width: 300px;
+          color: rgba(229, 32, 39, 0.38);
+          font-size: 28px;
+          font-weight: 700;
+          border-radius: none;
+          padding: 12px 30px;
+          text-decoration: none;
+          display: inline-block;
+        }
+      }
+    }
+
+    .zl-col-about-text {
+      min-height: 450px;
+      max-width: 500px;
+      .zl-about-title {
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 125%;
+          bottom: 0;
+          background: #685418;
+          left: 0;
+        }
+      }
+
+      .zl-about-description {
+        color: #685418;
+        font-size: 14px;
+
+        p {
+          line-height: 214%;
+        }
+      }
+    }
+  }
 }
 
-.block-home-hero {
-  background-color: #c62828;
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  width: 40%;
-  height: 200px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  display: flex;
-  align-items: end;
-  justify-content: end;
-  padding-left: 19px;
-}
-
-.vc_column-inner {
-  min-height: 530px;
+.zl-section-testimonial {
   background-repeat: no-repeat;
   background-size: cover;
+
+  .zl-row-testimonial {
+    .zl-col-testimonial {
+      .zl-testimonial-quote {
+        color: #ffffff;
+        font-style: italic;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .zl-testimonial-author {
+        text-align: end;
+        color: #ffffff;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .zl-testimonial-pagination {
+      }
+    }
+  }
+}
+
+.zl-section-services,
+.grid-container {
+  margin: 0 auto !important;
+  left: -15px !important;
+
+  .zl-row-services-title {
+    .zl-col-services-title {
+      .zl-services-title {
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 130%;
+          bottom: 0;
+          background: #685418;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .zl-row-services-grid {
+    .zl-col-service {
+      .zl-service-icon {
+      }
+      .zl-service-title {
+        font-weight: 600;
+      }
+      .zl-service-description {
+        text-align: center;
+        color: #685418;
+      }
+      .zl-btn-professionals {
+        .vc_btn3-style-outline-custom {
+          width: 210px;
+          font-weight: bolder;
+          padding: 10px 45px 8px 45px;
+          text-decoration: none;
+          display: inline-block;
+        }
+      }
+      .zl-btn-homeowners {
+        .vc_btn3-style-outline-custom {
+          width: 210px;
+          font-weight: bolder;
+          padding: 10px 45px 8px 45px;
+          text-decoration: none;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.zl-section-gallery {
+  .zl-row-gallery {
+    .zl-col-gallery,
+    .vc_column-inner {
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: 530px;
+      .block-gallery-text {
+        background-color: #e52027;
+        clip-path: polygon(60% 0, 0 0, 0 100%);
+        height: 40%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        padding-left: 60px;
+        margin-top: 5px;
+
+        p {
+          color: #ffffff;
+          font-size: 22px;
+          font-weight: 900;
+          text-align: left;
+          padding-bottom: 6rem;
+        }
+      }
+    }
+  }
 }
