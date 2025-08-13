@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .zl-section-hero {
   background-repeat: no-repeat;
   background-size: cover;
@@ -106,11 +110,29 @@
       .zl-testimonial-author {
         text-align: end;
         color: #ffffff;
-        max-width: 800px;
-        margin: 0 auto;
+        width: 65%;
+
+        @include breakpoint(medium down) {
+          text-align: center;
+          margin: 0 auto;
+        }
       }
 
-      .zl-testimonial-pagination {
+      .vc_pagination {
+        padding-top: 1rem;
+        text-align: end;
+        width: 70%;
+
+        @include breakpoint(medium down) {
+          text-align: center;
+          margin: 0 auto;
+        }
+
+        .vc_pagination-trigger {
+          height: 14px;
+          width: 14px;
+          border: 1px solid #ffffff;
+        }
       }
     }
   }
@@ -155,8 +177,9 @@
       .zl-btn-professionals {
         .vc_btn3-style-outline-custom {
           width: 210px;
-          font-weight: bolder;
-          padding: 10px 45px 8px 45px;
+          font-size: 18px;
+          font-weight: 700;
+          padding: 10px 25px 8px 25px;
           text-decoration: none;
           display: inline-block;
         }
@@ -164,8 +187,9 @@
       .zl-btn-homeowners {
         .vc_btn3-style-outline-custom {
           width: 210px;
-          font-weight: bolder;
-          padding: 10px 45px 8px 45px;
+          font-size: 18px;
+          font-weight: 700;
+          padding: 10px 25px 10px 25px;
           text-decoration: none;
           display: inline-block;
         }
@@ -178,12 +202,15 @@
   .zl-row-gallery {
     .zl-col-gallery,
     .vc_column-inner {
+      position: relative;
+      overflow: hidden;
       background-repeat: no-repeat;
       background-size: 100% 100%;
       height: 530px;
+      padding: 0;
       .block-gallery-text {
         background-color: #e52027;
-        clip-path: polygon(60% 0, 0 0, 0 100%);
+        clip-path: polygon(100% 0, 0 0, 0 100%);
         height: 40%;
         width: 100%;
         position: absolute;
@@ -193,8 +220,7 @@
         display: flex;
         align-items: end;
         justify-content: start;
-        padding-left: 60px;
-        margin-top: 5px;
+        padding-left: 25px;
 
         p {
           color: #ffffff;
@@ -203,6 +229,138 @@
           text-align: left;
           padding-bottom: 6rem;
         }
+      }
+
+      .block-gallery-textup {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        text-align: center;
+
+        transform: translateY(200%);
+        transition: transform 0.4s ease-in-out;
+      }
+
+      &:hover .block-gallery-textup {
+        transform: translateY(60%);
+      }
+    }
+  }
+}
+
+/*
+Kitchen Page*/
+
+.zl-section-banner {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .zl-row-kitchen {
+    .zl-col-kitchen {
+    }
+  }
+}
+
+.zl-section-kitchen {
+  padding: 2rem 0 2rem 0 !important;
+  .zl-row-kitchen {
+    .zl-col-kitchen {
+      .zl-kitchen-titlle {
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 250%;
+          bottom: 0;
+          background: #685418;
+          left: 0;
+        }
+      }
+      .zl-kitchen-description {
+        margin-top: 15px;
+        color: #685418;
+        line-height: 210%;
+        font-weight: 400;
+
+        a {
+          color: #e52027;
+        }
+      }
+
+      .zl-kitchen-button,
+      .vc_btn3-style-outline-custom {
+        width: 300px;
+        font-size: 28px;
+        font-weight: 700;
+        border-radius: none;
+        padding: 12px 0;
+        text-decoration: none;
+        display: inline-block;
+        display: block;
+        margin: 0 auto;
+      }
+      .zl-kitchen-image {
+      }
+    }
+  }
+}
+
+.zl-section-partners {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .zl-row-partners {
+    .zl-col-partners {
+      .zl-partners-title {
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 115%;
+          bottom: 0;
+          background: #ffffff;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .zl-row-partners-img {
+    padding-top: 5rem;
+
+    .vc_images_carousel .vc_carousel-indicators .vc_active {
+      background-color: initial;
+      border: 1px solid #ffffff;
+      height: 14px;
+      margin: 5px;
+      width: 14px;
+      border-radius: 0;
+    }
+
+    .vc_images_carousel .vc_carousel-indicators {
+      width: auto;
+      left: 0 !important;
+      bottom: -40% !important;
+      right: -100% !important;
+    }
+
+    .zl-col-partners-img {
+      .zl-partners-carousel {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
       }
     }
   }
