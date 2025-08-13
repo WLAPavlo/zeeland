@@ -366,6 +366,8 @@
       flex-direction: row;
       align-items: flex-start;
       gap: 20px;
+      flex-wrap: nowrap;
+      padding-right: 2rem;
     }
   }
 
