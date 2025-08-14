@@ -50,7 +50,6 @@
 /* Main Header */
 .header {
   background-color: $white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 
   .grid-x {
@@ -75,6 +74,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 8px 0;
+    flex: 1;
   }
 
   h1 {
@@ -270,6 +270,13 @@
 
 /* MOBILE/TABLET MENU - 1023px and down */
 @include breakpoint(medium down) {
+  .header {
+    .grid-x {
+      position: relative;
+      width: 100%;
+    }
+  }
+
   .top-bar {
     display: none !important;
     position: absolute;
@@ -281,6 +288,7 @@
     max-height: 70vh;
     overflow-y: auto;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
 
     &.expanded {
       display: block !important;
@@ -294,11 +302,12 @@
     border: none !important;
     position: absolute;
     top: 0;
-    right: 15px;
+    right: 0;
     bottom: 0;
     height: 100%;
     align-items: center;
     z-index: 1001;
+    width: auto;
 
     .title-bar-title {
       display: none;
@@ -309,7 +318,7 @@
       width: 44px;
       height: 44px;
       padding: 10px;
-      margin: 0;
+      margin: 0 15px 0 0;
       border: none !important;
       background: transparent !important;
       cursor: pointer;
@@ -403,12 +412,14 @@
     padding: 0 !important;
     background: transparent !important;
     list-style: none !important;
+    width: 100%;
 
     li {
       display: block !important;
       width: 100% !important;
       margin: 0 !important;
       background: transparent !important;
+      position: relative;
 
       > a {
         display: flex !important;
@@ -424,6 +435,7 @@
         border: none !important;
         width: 100%;
         cursor: pointer;
+        position: relative;
 
         &:hover {
           background: #f8f8f8 !important;
@@ -432,7 +444,6 @@
 
         &::before,
         &::after {
-          display: none !important;
         }
       }
 
@@ -446,6 +457,11 @@
       }
 
       &.has-dropdown {
+        > a {
+          cursor: pointer;
+          position: relative;
+        }
+
         .submenu {
           display: none;
           background: #f8f8f8 !important;
@@ -453,6 +469,7 @@
           padding: 0 !important;
           list-style: none !important;
           transition: all 0.3s ease;
+          width: 100%;
 
           &.is-active {
             display: block !important;
@@ -460,6 +477,7 @@
 
           li {
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            width: 100%;
 
             &:last-child {
               border-bottom: none;
@@ -470,6 +488,7 @@
               font-size: 13px !important;
               line-height: 40px !important;
               background-color: transparent;
+              width: 100%;
 
               &:hover {
                 color: $main-color !important;

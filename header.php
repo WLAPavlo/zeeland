@@ -97,33 +97,34 @@ use theme\FoundationNavigation;
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const menuIcon = document.querySelector('.menu-icon');
-        const topBar = document.querySelector('.top-bar');
 
-        // Check if mobile/tablet (Foundation medium down = < 1024px)
-        function isMobileTablet() {
-            return window.innerWidth < 1024;
-        }
-
-        if (menuIcon && topBar) {
-            // Burger menu toggle
-            menuIcon.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                if (isMobileTablet()) {
-                    // Toggle burger animation
-                    this.classList.toggle('is-active');
-
-                    // Toggle menu visibility
-                    topBar.classList.toggle('expanded');
-
-                    console.log('Burger clicked, menu expanded:', topBar.classList.contains('expanded'));
-                }
-            });
 
             // Handle dropdown clicks in mobile/tablet
             const dropdownItems = document.querySelectorAll('.has-dropdown');
+            const menuIcon = document.querySelector('.menu-icon');
+            const topBar = document.querySelector('.top-bar');
+
+            // Check if mobile/tablet (Foundation medium down = < 1024px)
+            function isMobileTablet() {
+                return window.innerWidth < 1024;
+            }
+
+            if (menuIcon && topBar) {
+                // Burger menu toggle
+                menuIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (isMobileTablet()) {
+                        // Toggle burger animation
+                        this.classList.toggle('is-active');
+
+                        // Toggle menu visibility
+                        topBar.classList.toggle('expanded');
+
+                        console.log('Burger clicked, menu expanded:', topBar.classList.contains('expanded'));
+                    }
+                });
 
             dropdownItems.forEach(item => {
                 const submenu = item.querySelector('.submenu');
@@ -203,9 +204,7 @@ use theme\FoundationNavigation;
                 }
             });
 
-            // Handle resize - виправлена версія
             window.addEventListener('resize', function() {
-                // Використовуємо setTimeout щоб дати час браузеру оновити розмір
                 setTimeout(() => {
                     if (!isMobileTablet()) {
                         // Desktop mode - reset mobile states
