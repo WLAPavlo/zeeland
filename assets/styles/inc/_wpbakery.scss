@@ -5,18 +5,44 @@ body {
 .zl-section-hero {
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 
   .zl-row-hero {
-    height: 530px;
   }
+
   .zl-col-hero {
     height: 530px;
-  }
+    position: relative;
+    overflow: hidden;
 
-  .zl-hero-play-icon {
-  }
+    .vc_video-bg {
+      opacity: 0;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
 
-  .zl-hero-pause-icon {
+      &.video-active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .vc_column-inner {
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: 530px;
+    }
+
+    .zl-hero-play-icon {
+      position: absolute;
+      top: -5px;
+      right: 130px;
+      z-index: 10;
+    }
+    .zl-hero-pause-icon {
+      position: absolute;
+      top: -5px;
+      right: 80px;
+      z-index: 10;
+    }
   }
 
   .block-home-hero {
@@ -27,7 +53,7 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 1;
+    z-index: 5;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -66,6 +92,7 @@ body {
 
       .zl-about-cta {
         text-align: center;
+        margin: 0;
 
         .vc_btn3-style-outline-custom {
           width: 300px;
@@ -379,9 +406,13 @@ Kitchen Page*/
   .zl-pageable-container {
     .vc_tta-panel {
       display: none !important;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
 
       &.vc_active {
         display: block !important;
+        opacity: 1;
+        animation: fadeIn 0.5s ease-in-out;
       }
     }
 
@@ -389,24 +420,30 @@ Kitchen Page*/
       display: flex !important;
       justify-content: flex-end;
     }
+
     .vc_pagination-trigger {
       height: 14px !important;
       width: 14px !important;
       border: 1px solid #ffffff !important;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+
+      &.vc_active {
+        transform: scale(1.3);
+        background: #ffffff !important;
+      }
     }
+
     .vc_pagination {
       padding: 0 !important;
       margin: 0 !important;
       display: flex !important;
       justify-content: flex-end;
       text-align: end;
-      width: 70%;
-
-      @include breakpoint(medium down) {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-      }
+      width: 105%;
     }
 
     .zl-section-img,
@@ -414,7 +451,7 @@ Kitchen Page*/
       display: flex !important;
       flex-wrap: wrap !important;
       justify-content: center !important;
-      align-items: flex-start !important;
+      align-items: center !important;
       gap: 30px !important;
       padding: 20px 0 !important;
       margin: 0 !important;
@@ -477,6 +514,17 @@ Kitchen Page*/
           width: 100% !important;
         }
       }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
