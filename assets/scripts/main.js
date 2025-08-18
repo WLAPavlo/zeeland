@@ -227,3 +227,138 @@ $(window).on('resize', function () {
 $(window).on('scroll', function () {
   // jQuery code goes here
 });
+
+/*
+Header*/
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Handle dropdown clicks in mobile/tablet
+  const dropdownItems = document.querySelectorAll('.has-dropdown');
+  const menuIcon = document.querySelector('.menu-icon');
+  const topBar = document.querySelector('.top-bar');
+
+  // Check if mobile/tablet (< 1200px)
+  function isMobileTablet() {
+    return window.innerWidth < 1200;
+  }
+  if (menuIcon && topBar) {
+    // Burger menu toggle
+    menuIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (isMobileTablet()) {
+        // Toggle burger animation
+        this.classList.toggle('is-active');
+
+        // Toggle menu visibility
+        topBar.classList.toggle('expanded');
+
+        console.log(
+          'Burger clicked, menu expanded:',
+          topBar.classList.contains('expanded')
+        );
+      }
+    });
+
+    dropdownItems.forEach((item) => {
+      const submenu = item.querySelector('.submenu');
+
+      if (submenu) {
+        const link = item.querySelector('> a');
+        if (link) {
+          link.addEventListener('click', function (e) {
+            if (isMobileTablet()) {
+              e.preventDefault();
+
+              // Close other dropdowns
+              dropdownItems.forEach((otherItem) => {
+                if (otherItem !== item) {
+                  const otherSubmenu = otherItem.querySelector('.submenu');
+                  if (otherSubmenu) {
+                    otherItem.classList.remove('submenu-open');
+                    otherSubmenu.classList.remove('is-active');
+                  }
+                }
+              });
+
+              // Toggle current dropdown
+              const isOpen = submenu.classList.contains('is-active');
+
+              if (isOpen) {
+                item.classList.remove('submenu-open');
+                submenu.classList.remove('is-active');
+              } else {
+                item.classList.add('submenu-open');
+                submenu.classList.add('is-active');
+              }
+
+              console.log(
+                'Dropdown toggled for:',
+                link.textContent,
+                'Open:',
+                !isOpen
+              );
+            }
+          });
+        }
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function (e) {
+      if (
+        isMobileTablet() &&
+        !e.target.closest('.title-bar') &&
+        !e.target.closest('.top-bar')
+      ) {
+        menuIcon.classList.remove('is-active');
+        topBar.classList.remove('expanded');
+
+        // Close all dropdowns
+        dropdownItems.forEach((item) => {
+          const submenu = item.querySelector('.submenu');
+          if (submenu) {
+            item.classList.remove('submenu-open');
+            submenu.classList.remove('is-active');
+          }
+        });
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      setTimeout(() => {
+        if (!isMobileTablet()) {
+          // Desktop mode - reset mobile states
+          menuIcon.classList.remove('is-active');
+          topBar.classList.remove('expanded');
+
+          dropdownItems.forEach((item) => {
+            const submenu = item.querySelector('.submenu');
+            if (submenu) {
+              item.classList.remove('submenu-open');
+              submenu.classList.remove('is-active');
+              submenu.style.display = ''; // Reset inline styles
+            }
+          });
+        } else {
+          // Mobile mode - ensure burger can work
+          dropdownItems.forEach((item) => {
+            const submenu = item.querySelector('.submenu');
+            if (submenu) {
+              submenu.style.display = ''; // Reset inline styles
+            }
+          });
+        }
+      }, 100);
+    });
+
+    menuIcon.addEventListener('mouseup', function () {
+      this.blur();
+    });
+
+    menuIcon.addEventListener('touchend', function () {
+      this.blur();
+    });
+  }
+});
