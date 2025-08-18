@@ -171,6 +171,17 @@
   }
 }
 
+// Button mixin based on existing styles
+@mixin button-styles {
+  border-width: $button-hollow-border-width;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+@mixin button-hover {
+  /* basic hover and focus effects */
+}
+
 // Default wordpress spinner animation on loading
 @mixin loader() {
   &::after {

@@ -27,7 +27,7 @@ body {
 
     .vc_column-inner {
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: cover;
       height: 530px;
     }
 
@@ -270,7 +270,6 @@ body {
       background-size: cover;
       background-position: center;
       height: 480px;
-      padding: 0;
 
       .block-gallery-text {
         background-color: #e52027;

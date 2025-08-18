@@ -143,11 +143,11 @@
 
 .footer__contact {
   @include breakpoint(large) {
-    text-align: right;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
+    align-items: flex-start;
+    gap: 3px;
   }
 
   @include breakpoint(large down) {
@@ -268,7 +268,7 @@
 // Social icons styling
 .stay-tuned {
   display: flex;
-  gap: 8px !important;
+  gap: 0 !important;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -311,11 +311,12 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   .fab {
     display: block;
-    color: #d32f2f;
+    color: $main-color;
     font-size: 18px;
     transition: all 0.3s ease;
 
@@ -326,6 +327,10 @@
     @include breakpoint(small down) {
       font-size: 14px;
     }
+  }
+
+  &:hover .fab {
+    color: $main-color;
   }
 }
 
@@ -379,8 +384,8 @@
   .footer__contact {
     order: 2;
     flex: 0 0 auto;
-    text-align: right;
-    align-items: flex-end;
+    text-align: left;
+    align-items: flex-start;
     gap: 12px;
   }
 
@@ -421,54 +426,5 @@
 
   .footer__contact {
     gap: 8px;
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 360px) {
-  .footer {
-    padding-top: 20px;
-
-    .grid-container {
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-  }
-
-  .footer__main {
-    padding-bottom: 25px;
-
-    .grid-x {
-      gap: 12px;
-    }
-  }
-
-  .footer__phone {
-    font-size: 14px;
-  }
-
-  .footer__address {
-    font-size: 11px;
-  }
-
-  .stay-tuned__link {
-    width: 26px;
-    height: 26px;
-
-    .fab {
-      font-size: 12px;
-    }
-  }
-
-  .footer__copy {
-    font-size: 11px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-
-  .footer__links {
-    li a {
-      font-size: 11px;
-    }
   }
 }

@@ -9,13 +9,11 @@
   padding-bottom: 100px;
 
   .label {
-    background-color: $primary-color;
     text-decoration: none;
     cursor: pointer;
 
     &:hover {
-      background-color: darken($primary-color, 8);
-      color: $white;
+      color: $main-color;
     }
   }
 }

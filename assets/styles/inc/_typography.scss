@@ -88,7 +88,7 @@ address {
 }
 
 a {
-  color: $primary-color;
+  color: $main-text;
   transition: all 0.2s ease-in-out;
   font-family: $font;
 
@@ -200,13 +200,7 @@ button,
 input[type='submit'],
 input[type='reset'],
 input[type='button'] {
-  border-width: $button-hollow-border-width;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-
-  //&:hover,
-  //&:focus {
-  //}
+  @include button-styles;
 }
 
 /* Button additional styles */
@@ -214,6 +208,6 @@ input[type='button'] {
 .button {
   &:hover,
   &:focus {
-    /* basic hover and focus effects */
+    @include button-hover;
   }
 }
