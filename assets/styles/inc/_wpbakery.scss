@@ -151,6 +151,11 @@ body {
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
+
+        @include breakpoint(medium down) {
+          text-align: center;
+          font-size: 24px;
+        }
       }
 
       .zl-testimonial-author {
@@ -212,13 +217,17 @@ body {
   .zl-row-services-grid {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
 
     @include breakpoint(medium only) {
-      display: flex;
-      flex-wrap: wrap;
-
       .zl-col-service {
         width: 50%;
+      }
+    }
+
+    @include breakpoint(small only) {
+      .zl-col-service {
+        width: 100%;
       }
     }
 
@@ -413,9 +422,21 @@ Kitchen Page*/
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: visible !important;
+  padding-bottom: 60px !important;
+
+  *,
+  *:before,
+  *:after {
+    overflow: visible !important;
+  }
 
   .zl-row-partners {
+    overflow: visible !important;
+
     .zl-col-partners {
+      overflow: visible !important;
+
       .zl-partners-title {
         font-weight: 600;
         position: relative;
@@ -441,15 +462,82 @@ Kitchen Page*/
   }
 
   .zl-pageable-container {
+    position: relative;
+
+    .vc_tta-panels-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+      min-height: 200px;
+      overflow: visible !important;
+    }
+
+    .vc_tta-tabs-container {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative !important;
+      z-index: 100 !important;
+    }
+
+    .vc_tta-tabs-list {
+      display: flex !important;
+      justify-content: flex-end !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
     .vc_tta-panel {
-      display: none !important;
-      transition: opacity 0.5s ease-in-out;
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      width: 100%;
       opacity: 0;
+      visibility: hidden;
+      transform: translateX(100%);
+      transition: all 0.4s ease-in-out;
+      z-index: 1;
+
+      &.slide-out-left {
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &.slide-out-right {
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+      }
 
       &.vc_active {
-        display: block !important;
+        position: relative !important;
         opacity: 1;
-        animation: fadeIn 0.5s ease-in-out;
+        visibility: visible;
+        transform: translateX(0);
+        z-index: 2;
+      }
+
+      &.slide-in-left {
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: visible;
+
+        &.vc_active {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      &.slide-in-right {
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: visible;
+
+        &.vc_active {
+          transform: translateX(0);
+          opacity: 1;
+        }
       }
     }
 
@@ -484,7 +572,7 @@ Kitchen Page*/
     }
 
     .zl-section-img,
-    .vc_tta-panel.vc_active .vc_tta-panel-body {
+    .vc_tta-panel .vc_tta-panel-body {
       display: flex !important;
       flex-wrap: wrap !important;
       justify-content: center !important;
@@ -494,7 +582,8 @@ Kitchen Page*/
       margin: 0 !important;
       width: 100% !important;
 
-      .zl-image-partners {
+      .zl-image-partners,
+      .wpb_single_image {
         flex: 0 0 calc(33.33% - 20px) !important;
         width: calc(33.33% - 20px) !important;
         max-width: 300px !important;
@@ -503,9 +592,9 @@ Kitchen Page*/
         display: block !important;
         margin: 0 !important;
         padding: 0 !important;
+        transition: all 0.3s ease-in-out;
 
         .wpb_wrapper,
-        .wpb_single_image,
         .vc_single_image-wrapper {
           width: 100% !important;
           text-align: center !important;
@@ -520,6 +609,13 @@ Kitchen Page*/
           display: block !important;
           margin: 0 auto !important;
           object-fit: contain !important;
+          transition: all 0.3s ease-in-out;
+          filter: brightness(0.9);
+
+          &:hover {
+            filter: brightness(1);
+            transform: scale(1.05);
+          }
         }
 
         @include breakpoint(large down) {
@@ -534,34 +630,6 @@ Kitchen Page*/
           max-width: 250px !important;
         }
       }
-
-      .wpb_single_image {
-        flex: 0 0 calc(33.33% - 20px) !important;
-        width: calc(33.33% - 20px) !important;
-        max-width: 300px !important;
-        text-align: center !important;
-
-        @include breakpoint(large down) {
-          flex: 0 0 calc(50% - 15px) !important;
-          width: calc(50% - 15px) !important;
-        }
-
-        @include breakpoint(medium down) {
-          flex: 0 0 100% !important;
-          width: 100% !important;
-        }
-      }
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 }
