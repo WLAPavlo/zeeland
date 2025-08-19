@@ -210,6 +210,9 @@ body {
   }
 
   .zl-row-services-grid {
+    display: flex;
+    align-items: flex-start;
+
     @include breakpoint(medium only) {
       display: flex;
       flex-wrap: wrap;
@@ -221,10 +224,19 @@ body {
 
     .zl-col-service {
       .zl-service-icon {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .zl-service-title {
         font-weight: 600;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
 
       .zl-service-description {
