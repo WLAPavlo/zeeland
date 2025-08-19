@@ -362,3 +362,154 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  function setMatchHeight() {
+    const elements = document.querySelectorAll('.match-height');
+    let maxHeight = 0;
+
+    elements.forEach((el) => {
+      el.style.height = 'auto';
+    });
+
+    elements.forEach((el) => {
+      if (el.offsetHeight > maxHeight) {
+        maxHeight = el.offsetHeight;
+      }
+    });
+
+    elements.forEach((el) => {
+      el.style.height = maxHeight + 'px';
+    });
+  }
+
+  setMatchHeight();
+
+  window.addEventListener('resize', setMatchHeight);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const testimonials = document.querySelectorAll('.zl-row-testimonial');
+
+  testimonials.forEach((container) => {
+    const panels = Array.from(container.querySelectorAll('.vc_tta-panel'));
+    const triggers = Array.from(
+      container.querySelectorAll('.vc_pagination-trigger')
+    );
+    const panelsContainer = container.querySelector('.vc_tta-panels-container');
+
+    let startX = 0;
+
+    function updateActiveTrigger() {
+      let activePanelIndex = panels.findIndex((panel) =>
+        panel.classList.contains('vc_active')
+      );
+      if (activePanelIndex === -1) activePanelIndex = 0;
+
+      triggers.forEach((trigger, index) => {
+        trigger.classList.toggle('vc_active', index === activePanelIndex);
+      });
+    }
+
+    updateActiveTrigger();
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        setTimeout(updateActiveTrigger, 50);
+      });
+    });
+
+    panelsContainer.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      startX = e.touches[0].clientX;
+    });
+
+    panelsContainer.addEventListener('touchend', (e) => {
+      if (window.innerWidth > 768) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) < 30) return;
+
+      let activePanelIndex = panels.findIndex((panel) =>
+        panel.classList.contains('vc_active')
+      );
+      if (activePanelIndex === -1) activePanelIndex = 0;
+
+      if (diff < 0 && activePanelIndex < panels.length - 1) {
+        triggers[activePanelIndex + 1].click();
+      } else if (diff > 0 && activePanelIndex > 0) {
+        triggers[activePanelIndex - 1].click();
+      }
+
+      setTimeout(updateActiveTrigger, 50);
+    });
+
+    const observer = new MutationObserver(updateActiveTrigger);
+    panels.forEach((panel) =>
+      observer.observe(panel, { attributes: true, attributeFilter: ['class'] })
+    );
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const partnersSections = document.querySelectorAll('.zl-section-partners');
+
+  partnersSections.forEach((container) => {
+    const panels = Array.from(container.querySelectorAll('.vc_tta-panel'));
+    const triggers = Array.from(
+      container.querySelectorAll('.vc_pagination-trigger')
+    );
+    const panelsContainer = container.querySelector('.vc_tta-panels-container');
+
+    let startX = 0;
+
+    function updateActiveTrigger() {
+      let activePanelIndex = panels.findIndex((panel) =>
+        panel.classList.contains('vc_active')
+      );
+      if (activePanelIndex === -1) activePanelIndex = 0;
+
+      triggers.forEach((trigger, index) => {
+        trigger.classList.toggle('vc_active', index === activePanelIndex);
+      });
+    }
+
+    updateActiveTrigger();
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        setTimeout(updateActiveTrigger, 50);
+      });
+    });
+
+    panelsContainer.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      startX = e.touches[0].clientX;
+    });
+
+    panelsContainer.addEventListener('touchend', (e) => {
+      if (window.innerWidth > 768) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) < 30) return;
+
+      let activePanelIndex = panels.findIndex((panel) =>
+        panel.classList.contains('vc_active')
+      );
+      if (activePanelIndex === -1) activePanelIndex = 0;
+
+      if (diff < 0 && activePanelIndex < panels.length - 1) {
+        triggers[activePanelIndex + 1].click();
+      } else if (diff > 0 && activePanelIndex > 0) {
+        triggers[activePanelIndex - 1].click();
+      }
+
+      setTimeout(updateActiveTrigger, 50);
+    });
+
+    const observer = new MutationObserver(updateActiveTrigger);
+    panels.forEach((panel) =>
+      observer.observe(panel, { attributes: true, attributeFilter: ['class'] })
+    );
+  });
+});
