@@ -420,12 +420,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     panelsContainer.addEventListener('touchstart', (e) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth > 1023) return;
       startX = e.touches[0].clientX;
     });
 
     panelsContainer.addEventListener('touchend', (e) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth > 1023) return;
       const endX = e.changedTouches[0].clientX;
       const diff = endX - startX;
       if (Math.abs(diff) < 30) return;
@@ -483,12 +483,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     panelsContainer.addEventListener('touchstart', (e) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth > 1023) return;
       startX = e.touches[0].clientX;
     });
 
     panelsContainer.addEventListener('touchend', (e) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth > 1023) return;
       const endX = e.changedTouches[0].clientX;
       const diff = endX - startX;
       if (Math.abs(diff) < 30) return;

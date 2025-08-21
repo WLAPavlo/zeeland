@@ -293,9 +293,24 @@ body {
     align-items: flex-start;
     flex-wrap: wrap;
 
-    @include breakpoint(medium only) {
-      .zl-col-service {
-        width: 50%;
+    @media screen and (min-width: 640px) and (max-width: 1199px) {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      .vc_column-inner {
+        & > .wpb_wrapper {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+
+          .vc_row {
+            width: 100%;
+
+            .wpb_wrapper {
+              display: block;
+            }
+          }
+        }
       }
     }
 
@@ -303,6 +318,12 @@ body {
       .zl-col-service {
         width: 100%;
       }
+    }
+
+    .match-height {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
     }
 
     .zl-col-service {
